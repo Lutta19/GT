@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petroleum GATE Question Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #quizForm {
+            margin-bottom: 20px;
+        }
+        .question-block {
+            margin-bottom: 15px;
+        }
+        .question-input, .answer-input {
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .generated-quiz {
+            margin-top: 30px;
+        }
+        .generated-quiz h3 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Petroleum GATE Question Generator</h1>
+<div>
+    <label for="questionCount">Number of Questions:</label>
+    <input type="number" id="questionCount" value="100" min="1" max="100">
+</div>
+<br>
+<button onclick="generateQuizForm()">Generate Quiz Form</button>
+
+<div id="quizForm"></div>
+
+<div id="generatedQuiz" class="generated-quiz"></div>
+
+<script>
+    function generateQuizForm() {
+        const questionCount = document.getElementById("questionCount").value;
+        const quizFormContainer = document.getElementById("quizForm");
+        quizFormContainer.innerHTML = '';  // Clear any previous form
+
+        const questions = [
+            "What is the main principle behind reservoir engineering?",
+            "What is the purpose of drilling mud?",
+            "Which technique is used for enhanced oil recovery?",
+            "What is the primary function of a blowout preventer?",
+            "Which rock type is most common for oil reservoirs?",
+            "What does a mud pump do in drilling operations?",
+            "Which of the following is a common method of measuring porosity?",
+            "Which technique is used to enhance oil recovery?",
+            "What is the primary objective of reservoir simulation?",
+            "Which fluid property is most important in petroleum engineering?",
+            "What is the primary use of seismic surveys in exploration?",
+            "What is the difference between primary and secondary oil recovery?",
+            "What are the key elements of the drilling fluid system?",
+            "What is the role of a Christmas tree in production?",
+            "How does hydraulic fracturing increase oil production?",
+            "What is the purpose of a drill bit in drilling?",
+            "What is the most common type of drilling rig?",
+            "How is reservoir pressure calculated?",
+            "What is a choke used for in oil production?",
+            "What is the significance of a production logging tool?",
+            "What is a separator used for in petroleum production?",
+            "What is the purpose of a blowout preventer in drilling?",
+            "How does water flooding enhance oil recovery?",
+            "What is the purpose of a mud motor in drilling?",
+            "What is the primary goal of production engineering?",
+            "What is a downhole pump used for?",
+            "What does a pressure gauge measure in a well?",
+            "What is the main principle behind fracturing fluids?",
+            "What is a common method for determining reservoir permeability?",
+            "How does a pumpjack work?",
+            "What is the importance of a mud engineer on a drilling rig?",
+            "What is a typical problem encountered in wellbore stability?",
+            "How is formation damage avoided in drilling operations?",
+            "What does the term water cut refer to in oil production?",
+            "What is a slug test in reservoir testing?",
+            "How is the rate of penetration (ROP) calculated?",
+            "What does a mud logging unit do?",
+            "What is the role of gas lift in oil production?",
+            "What is the function of a stabilizer in drilling operations?",
+            "How is the bottom hole pressure (BHP) calculated?",
+            "What is a rotary table used for?",
+            "What is the function of a production casing?",
+            "What is the role of a drill collar?",
+            "What are the primary causes of wellbore instability?",
+            "What is the role of a cementing operation?",
+            "What is the primary method for detecting hydrocarbons in a reservoir?",
+            "What is the difference between a vertical and horizontal well?",
+            "How is production rate determined in a well?",
+            "What is the primary purpose of a completion design?",
+            "What does a surface blowout preventer (BOP) do?",
+            "What is the difference between oil and gas reservoirs?",
+            "What is the significance of reservoir modeling?",
+            "How is gas-to-oil ratio (GOR) measured?",
+            "What is a typical casing design for a deep well?",
+            "What are the challenges of deepwater drilling?",
+            "How is gas storage managed in a reservoir?",
+            "What is a surface facility in petroleum production?",
+            "What is the importance of pressure transient testing?",
+            "What is a wellhead system used for?",
+            "What does a logging tool measure in a well?",
+            "What is the significance of thermal recovery methods?",
+            "What is the purpose of an artificial lift system?",
+            "What is the primary method for measuring well performance?",
+            "What does a production packer do?",
+            "What is a reservoir pressure transient?",
+            "How is a wellbore cleaned?",
+            "What is the significance of formation testing?",
+            "What is the purpose of a tubing hanger?",
+            "What is the role of a gas compressor?",
+            "How does a sand control technique work?",
+            "What is the significance of acidizing in well stimulation?",
+            "How is well testing performed?",
+            "What is the primary difference between drilling and production operations?",
+            "How is the flow rate in a well determined?",
+            "What is the significance of formation fluid sampling?",
+            "How does a production tree work?",
+            "What is the primary objective of well control?",
+            "What is the function of a Christmas tree valve?",
+            "What is the significance of gas measurement?",
+            "What is the purpose of a well test separator?",
+            "What does a production facility consist of?",
+            "What are the primary methods of enhanced oil recovery (EOR)?",
+            "What is the difference between primary and secondary recovery?",
+            "How are well logs used in reservoir evaluation?",
+            "What are the primary tools used in well logging?",
+            "What is the purpose of a separator in a petroleum processing facility?",
+            "What is the importance of a drilling schedule?",
+            "What is the function of a packer in drilling operations?",
+            "What is the significance of drilling optimization?",
+            "What is a wellhead control panel used for?",
+            "How does a gas lift system work?",
+            "What is a blowout preventer (BOP) stack?",
+            "What is the importance of a surface well test?",
+            "What is the purpose of a drilling fluid system?",
+            "How is well testing data analyzed?",
+            "What is a mud motor in drilling operations?",
+            "What is the role of a sand screen in a well?",
+            "How is oil production rate calculated?",
+            "What is the significance of a wellbore integrity test?",
+            "What is the purpose of a choke valve?",
+            "What is the role of a drill string in drilling?",
+            "What is the function of a surface casing in drilling?"
+        ];
+
+        const answers = [
+            ["A) Permeability", "B) Porosity", "C) Pressure", "D) Saturation"],
+            ["A) Lubrication", "B) Cooling", "C) Carrying cuttings", "D) Enhancing drilling rate"],
+            ["A) CO2 Injection", "B) Steam Injection", "C) Water Flooding", "D) Nitrogen Injection"],
+            ["A) Prevent gas release", "B) Control drill bit", "C) Lift oil to surface", "D) Cool the bit"],
+            ["A) Sedimentary", "B) Igneous", "C) Metamorphic", "D) Volcanic"],
+            // Repeat for the next questions until 100
+        ];
+
+        const correctAnswers = ["A", "C", "B", "A", "D"];  // Example correct answers
+
+        for (let i = 1; i <= questionCount; i++) {
+            const questionBlock = document.createElement("div");
+            questionBlock.classList.add("question-block");
+            questionBlock.innerHTML = `
+                <h3>Question ${i}</h3>
+                <label for="q${i}">Question: ${questions[i-1]}</label>
+                <div>
+                    <label for="q${i}_a">Answer A:</label>
+                    <input type="text" id="q${i}_a" class="answer-input" value="${answers[i-1][0]}" disabled>
+                </div>
+                <div>
+                    <label for="q${i}_b">Answer B:</label>
+                    <input type="text" id="q${i}_b" class="answer-input" value="${answers[i-1][1]}" disabled>
+                </div>
+                <div>
+                    <label for="q${i}_c">Answer C:</label>
+                    <input type="text" id="q${i}_c" class="answer-input" value="${answers[i-1][2]}" disabled>
+                </div>
+                <div>
+                    <label for="q${i}_d">Answer D:</label>
+                    <input type="text" id="q${i}_d" class="answer-input" value="${answers[i-1][3]}" disabled>
+                </div>
+                <label for="q${i}_correct">Correct Answer:</label>
+                <input type="text" id="q${i}_correct" class="answer-input" value="${correctAnswers[i-1]}" disabled>
+            `;
+            quizFormContainer.appendChild(questionBlock);
+        }
+
+        const submitButton = document.createElement("button");
+        submitButton.innerText = "Generate Quiz HTML";
+        submitButton.onclick = generateQuizHTML;
+        quizFormContainer.appendChild(submitButton);
+    }
+
+    function generateQuizHTML() {
+        const questionCount = document.getElementById("questionCount").value;
+        const generatedQuizContainer = document.getElementById("generatedQuiz");
+        generatedQuizContainer.innerHTML = "<h3>Generated Quiz HTML:</h3><textarea style='width:100%; height: 300px;'></textarea>";
+
+        let quizHTML = `<h1>Custom Quiz</h1><form id="quizForm">\n`;
+
+        for (let i = 1; i <= questionCount; i++) {
+            const questionText = document.getElementById(`q${i}`).value;
+            const answerA = document.getElementById(`q${i}_a`).value;
+            const answerB = document.getElementById(`q${i}_b`).value;
+            const answerC = document.getElementById(`q${i}_c`).value;
+            const answerD = document.getElementById(`q${i}_d`).value;
+            const correctAnswer = document.getElementById(`q${i}_correct`).value;
+
+            quizHTML += `
+    <div class="question">
+        <p>${i}. ${questionText}</p>
+        <input type="radio" name="q${i}" value="a"> A. ${answerA}<br>
+        <input type="radio" name="q${i}" value="b"> B. ${answerB}<br>
+        <input type="radio" name="q${i}" value="c"> C. ${answerC}<br>
+        <input type="radio" name="q${i}" value="d"> D. ${answerD}<br>
+    </div>\n`;
+        }
+
+        quizHTML += `<button type="button" onclick="submitQuiz()">Submit</button></form>`;
+
+        generatedQuizContainer.querySelector("textarea").value = quizHTML;
+    }
+
+    function submitQuiz() {
+        // This function can later handle quiz submissions and results
+        alert("Quiz Submitted!");
+    }
+</script>
+
+</body>
+</html>

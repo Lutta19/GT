@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #quizForm {
+            margin-bottom: 20px;
+        }
+        .question-block {
+            margin-bottom: 15px;
+        }
+        .question-input, .answer-input {
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .generated-quiz {
+            margin-top: 30px;
+        }
+        .generated-quiz h3 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Quiz Generator</h1>
+<div>
+    <label for="questionCount">Number of Questions:</label>
+    <input type="number" id="questionCount" value="1" min="1" max="20">
+</div>
+<br>
+<button onclick="generateQuizForm()">Generate Quiz Form</button>
+
+<div id="quizForm"></div>
+
+<div id="generatedQuiz" class="generated-quiz"></div>
+
+<script>
+    function generateQuizForm() {
+        const questionCount = document.getElementById("questionCount").value;
+        const quizFormContainer = document.getElementById("quizForm");
+        quizFormContainer.innerHTML = '';  // Clear any previous form
+
+        for (let i = 1; i <= questionCount; i++) {
+            const questionBlock = document.createElement("div");
+            questionBlock.classList.add("question-block");
+            questionBlock.innerHTML = `
+                <h3>Question ${i}</h3>
+                <label for="q${i}">Enter Question Text:</label>
+                <input type="text" id="q${i}" class="question-input" placeholder="Type your question here">
+                
+                <div>
+                    <label for="q${i}_a">Answer A:</label>
+                    <input type="text" id="q${i}_a" class="answer-input" placeholder="Answer A">
+                </div>
+                <div>
+                    <label for="q${i}_b">Answer B:</label>
+                    <input type="text" id="q${i}_b" class="answer-input" placeholder="Answer B">
+                </div>
+                <div>
+                    <label for="q${i}_c">Answer C:</label>
+                    <input type="text" id="q${i}_c" class="answer-input" placeholder="Answer C">
+                </div>
+                <div>
+                    <label for="q${i}_d">Answer D:</label>
+                    <input type="text" id="q${i}_d" class="answer-input" placeholder="Answer D">
+                </div>
+                <label for="q${i}_correct">Correct Answer (A/B/C/D):</label>
+                <input type="text" id="q${i}_correct" class="answer-input" placeholder="Correct Answer">
+            `;
+            quizFormContainer.appendChild(questionBlock);
+        }
+
+        // Add a button to generate the HTML for the quiz
+        const submitButton = document.createElement("button");
+        submitButton.innerText = "Generate Quiz HTML";
+        submitButton.onclick = generateQuizHTML;
+        quizFormContainer.appendChild(submitButton);
+    }
+
+    function generateQuizHTML() {
+        const questionCount = document.getElementById("questionCount").value;
+        const generatedQuizContainer = document.getElementById("generatedQuiz");
+        generatedQuizContainer.innerHTML = "<h3>Generated Quiz HTML:</h3><textarea style='width:100%; height: 300px;'></textarea>";
+
+        let quizHTML = `<h1>Custom Quiz</h1><form id="quizForm">\n`;
+
+        for (let i = 1; i <= questionCount; i++) {
+            const questionText = document.getElementById(`q${i}`).value;
+            const answerA = document.getElementById(`q${i}_a`).value;
+            const answerB = document.getElementById(`q${i}_b`).value;
+            const answerC = document.getElementById(`q${i}_c`).value;
+            const answerD = document.getElementById(`q${i}_d`).value;
+            const correctAnswer = document.getElementById(`q${i}_correct`).value;
+
+            quizHTML += `
+    <div class="question">
+        <p>${i}. ${questionText}</p>
+        <input type="radio" name="q${i}" value="a"> A. ${answerA}<br>
+        <input type="radio" name="q${i}" value="b"> B. ${answerB}<br>
+        <input type="radio" name="q${i}" value="c"> C. ${answerC}<br>
+        <input type="radio" name="q${i}" value="d"> D. ${answerD}<br>
+    </div>\n`;
+        }
+
+        quizHTML += `<button type="button" onclick="submitQuiz()">Submit</button></form>`;
+
+        generatedQuizContainer.querySelector("textarea").value = quizHTML;
+    }
+
+    function submitQuiz() {
+        // This function can later handle quiz submissions and results
+        alert("Quiz Submitted!");
+    }
+</script>
+
+</body>
+</html>
